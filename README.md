@@ -34,6 +34,21 @@ flutter pub get
 flutter run
 ```
 
+## Deployment to GitHub Pages
+
+### Automatic Deployment (Recommended)
+1. Push your code to a GitHub repository
+2. Go to repository Settings → Pages
+3. Enable GitHub Pages and select "GitHub Actions" as source
+4. The workflow will automatically build and deploy your app
+
+### Manual Deployment
+```bash
+./deploy.sh
+```
+
+Your site will be available at: `https://[your-username].github.io/Portfolio-1/`
+
 ## Customization
 
 To customize your portfolio information, edit the data in:
