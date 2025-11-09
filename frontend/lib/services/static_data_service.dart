@@ -5,7 +5,7 @@ class StaticDataService {
   static PersonalInfo getPersonalInfo() {
     return PersonalInfo(
       name: "Rosangela Herrera",
-      title: "Full Stack Developer",
+      title: "Full Stack Developer & Data Analyst",
       email: "rosangelahs@icloud.com",
       phone: "+1 (561) 574-4947",
       location: "Austin, TX",
@@ -22,11 +22,40 @@ class StaticDataService {
     return [
       Project(
         id: 1,
-        title: "E-Commerce Mobile App",
+        title: """National News Summarizer
+
+
+The project is organized into two repositories:
+
+- **Backend API**: nn_api
+- **Frontend Interface**: nn_frontend
+
+
+## Features
+
+- **Automated Summarization**: Paste any news article and receive a concise summary powered by NLP.
+- **RESTful API**: Built with FastAPI, offering interactive documentation via Swagger UI.
+- **Interactive Frontend**: Clean and responsive React interface for easy access.
+- **Custom Dataset**: Includes a manually curated dataset of Cuban news articles and summaries for evaluation.
+- **Thesis-Driven Development**: Designed with academic rigor and real-world application in mind.""",
         description:
-            "A full-featured e-commerce mobile application built with Flutter. Features include user authentication, product catalog, shopping cart, and payment integration.",
-        technologies: "Flutter, Dart, Firebase, Stripe API",
-        githubUrl: "https://github.com/rosangela-herrera/ecommerce-app",
+            """
+**National News Summarizer** is a full-stack application developed as my **final thesis project** during my Bachelor's degree.
+ The project explores the power of **Natural Language Processing (NLP)** to automatically generate concise summaries from long-form
+  news articles. It integrates a custom pipeline based on the NASES architecture and provides a user-friendly interface for real-time 
+  summarization.To support this system, I **scraped and compiled a dataset of Cuban news articles and their corresponding 
+  summaries**, which I published on Kaggle: Cuban News Dataset. Although I did not complete fine-tuning the model, I used this
+   dataset to **evaluate the quality of generated summaries** by comparing them with human-written ones.""",
+        technologies: """## Tech Stack
+
+- **Python**: Core backend development and data processing.
+- **FastAPI**: Lightweight web framework for building the RESTful API.
+- **PyTorch**: Deep learning framework used to train and deploy the summarization model.
+- **Transformers (Hugging Face)**: Implements the NASES-based summarization pipeline.
+- **React**: Frontend framework for building an intuitive user interface.
+- **Web Scraping (Python)**: Used to collect and structure the Cuban news dataset for evaluation and potential fine-tuning.
+""",
+        githubUrl: "https://github.com/Rosie1028/nn_frontend, https://github.com/Rosie1028/nn_api, https://www.kaggle.com/datasets/rosangelahs/cuban-news-dataset",
         liveUrl:
             "https://play.google.com/store/apps/details?id=com.example.ecommerce",
         featured: true,
