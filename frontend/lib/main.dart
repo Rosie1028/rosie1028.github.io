@@ -21,10 +21,6 @@ class PortfolioApp extends StatelessWidget {
     //   ),
     //   home: const HomeScreen(),
     // );
-    final fallbackFonts = <String>[
-      GoogleFonts.notoSans().fontFamily ?? 'NotoSans',
-    ];
-
     final baseTextTheme = GoogleFonts.interTextTheme(
       ThemeData.light().textTheme,
     ).apply(bodyColor: Colors.black87, displayColor: Colors.black87);
@@ -41,9 +37,8 @@ class PortfolioApp extends StatelessWidget {
           foregroundColor: Colors.black,
           elevation: 1,
         ),
-        fontFamily: GoogleFonts.inter().fontFamily,
-        fontFamilyFallback: fallbackFonts,
         textTheme: baseTextTheme,
+        fontFamilyFallback: const ['Noto Sans', 'Arial', 'sans-serif'],
       ),
       home: const HomeScreen(),
     );
