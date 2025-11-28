@@ -1,4 +1,4 @@
-# Portfolio Project
+ # Portfolio Project
 
 A modern portfolio app built with Flutter displaying static personal information and projects.
 

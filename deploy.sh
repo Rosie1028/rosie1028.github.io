@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Flutter Portfolio Deployment Script
-echo "🚀 Building Flutter app for GitHub Pages..."
+echo "🚀 Building and deploying Flutter app to GitHub Pages..."
 
 # Navigate to frontend directory
 cd frontend
@@ -14,17 +14,41 @@ flutter clean
 echo "📦 Installing dependencies..."
 flutter pub get
 
-# Build for web with GitHub Pages base href
+# Build for web with GitHub Pages base href (root URL)
 echo "🔨 Building web app..."
-flutter build web --release --base-href "/Portfolio-1/"
+flutter build web --release --base-href "/"
 
-echo "✅ Build complete!"
+# Go back to root
+cd ..
+
+# Copy build files to root
+echo "📋 Copying build files to root..."
+cp -r frontend/build/web/* .
+
+# Ensure .nojekyll exists
+touch .nojekyll
+
+# Update base href in index.html (ensure it's correct for root URL)
+sed -i '' 's|<base href="[^"]*">|<base href="/">|' index.html
+
+# Switch to main branch (rosie1028.github.io uses main branch)
+echo "🌿 Switching to main branch..."
+git checkout main
+
+# Stage all files
+echo "📝 Staging files..."
+git add .
+
+# Commit changes
+echo "💾 Committing changes..."
+git commit -m "Deploy portfolio - $(date +'%Y-%m-%d %H:%M:%S')"
+
+# Push to GitHub
+echo "🚀 Pushing to GitHub..."
+git push origin main
+
 echo ""
-echo "📁 Built files are in: frontend/build/web/"
-echo "🌐 To deploy to GitHub Pages:"
-echo "   1. Push your code to GitHub"
-echo "   2. Enable GitHub Pages in repository settings"
-echo "   3. The GitHub Action will automatically deploy"
-echo ""
-echo "🔗 Your site will be available at:"
-echo "   https://[your-username].github.io/Portfolio-1/"
+echo "✅ Deployment complete!"
+echo "⏳ Wait 5-10 minutes for GitHub Pages to update"
+echo "🌐 Your portfolio will be available at:"
+echo "   https://rosie1028.github.io/"
