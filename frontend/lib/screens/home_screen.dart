@@ -4,6 +4,7 @@ import '../services/static_data_service.dart';
 import '../widgets/personal_info_card.dart';
 import '../widgets/projects_section.dart';
 import '../widgets/loading_widget.dart';
+import '../widgets/footer_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -72,6 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 40),
                   // Projects Section
                   ProjectsSection(projects: projects),
+                  const SizedBox(height: 40),
+                  // Footer Section
+                  FooterSection(personalInfo: personalInfo),
                 ],
               ),
             ),

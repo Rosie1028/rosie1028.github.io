@@ -128,45 +128,71 @@ class ProjectCard extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 12,
                 color: Colors.white70,
-                height: 1.4,
+                height: 1.6,
               ),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.justify,
+              //maxLines: 3,
+              // overflow: TextOverflow.ellipsis,
             ),
           ),
 
           const SizedBox(height: 12),
 
-          // Technologies
-          Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children:
-                project.technologiesList.take(3).map((tech) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6,
-                      vertical: 3,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.2),
-                        width: 1,
-                      ),
-                    ),
-                    child: Text(
-                      tech,
-                      style: GoogleFonts.inter(
-                        fontSize: 10,
-                        color: Colors.white70,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  );
-                }).toList(),
-          ),
+          // // Technologies
+          // Wrap(
+          //   spacing: 6,
+          //   runSpacing: 6,
+          //   children:
+          //       project.technologiesList.take(5).map((tech) {
+          //         return Container(
+          //           padding: const EdgeInsets.symmetric(
+          //             horizontal: 6,
+          //             vertical: 3,
+          //           ),
+          //           decoration: BoxDecoration(
+          //             color: Colors.white.withOpacity(0.1),
+          //             borderRadius: BorderRadius.circular(6),
+          //             border: Border.all(
+          //               color: Colors.white.withOpacity(0.2),
+          //               width: 1,
+          //             ),
+          //           ),
+          //           child: Text(
+          //             tech,
+          //             style: GoogleFonts.inter(
+          //               fontSize: 10,
+          //               color: Colors.white70,
+          //               fontWeight: FontWeight.w500,
+          //             ),
+          //           ),
+          //         );
+          //       }).toList(),
+          // ),
+          Column(
+  children: project.technologiesList.take(5).map((tech) {
+    return Container(
+      width: double.infinity, // 👈 makes the card stretch full width
+      margin: const EdgeInsets.only(bottom: 8), // spacing between cards
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.2),
+          width: 1,
+        ),
+      ),
+      child: Text(
+        tech,
+        style: GoogleFonts.inter(
+          fontSize: 12,
+          color: Colors.white70,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }).toList(),
+),
 
           const SizedBox(height: 12),
 
@@ -187,7 +213,7 @@ class ProjectCard extends StatelessWidget {
                 Expanded(
                   child: _buildActionButton(
                     icon: FontAwesomeIcons.externalLinkAlt,
-                    label: 'Live',
+                    label: 'Details',
                     onTap: () => _launchUrl(project.liveUrl!),
                     isPrimary: true,
                   ),

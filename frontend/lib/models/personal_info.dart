@@ -9,6 +9,7 @@ class PersonalInfo {
   final String? githubUrl;
   final String? websiteUrl;
   final String? imagePath;
+  final String? resumeUrl;
 
   PersonalInfo({
     required this.name,
@@ -21,6 +22,7 @@ class PersonalInfo {
     this.githubUrl,
     this.websiteUrl,
     this.imagePath,
+    this.resumeUrl,
   });
 
   factory PersonalInfo.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class PersonalInfo {
       githubUrl: json['github_url'],
       websiteUrl: json['website_url'],
       imagePath: json['image_path'],
+      resumeUrl: json['resume_url'],
     );
   }
 
@@ -50,6 +53,7 @@ class PersonalInfo {
       'github_url': githubUrl,
       'website_url': websiteUrl,
       'image_path': imagePath,
+      'resume_url': resumeUrl,
     };
   }
 }
