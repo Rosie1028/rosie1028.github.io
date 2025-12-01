@@ -38,12 +38,12 @@ class StaticDataService {
             'summaries, which I published on Kaggle: Cuban News Dataset. Although I did not complete fine-tuning the model, I used this '
             'dataset to evaluate the quality of generated summaries by comparing them with human-written ones. ',
         technologies: """ 
-Python: Core backend development and data processing.
-FastAPI: Lightweight web framework for building the RESTful API.
-PyTorch: Deep learning framework used to train and deploy the summarization model.
-Transformers (Hugging Face): Implements the NASES-based summarization pipeline.
-React: Frontend framework for building an intuitive user interface.
-Web Scraping (Python): Used to collect and structure the Cuban news dataset for evaluation and potential fine-tuning.
+Python,
+FastAPI,
+PyTorch,
+Transformers (Hugging Face),
+React,
+Web Scraping (Python)
 """,
         githubUrl: "https://github.com/Rosie1028/nn_api",
         liveUrl:
@@ -62,9 +62,9 @@ Web Scraping (Python): Used to collect and structure the Cuban news dataset for 
             'user-friendly interface. ',
 
         technologies: """
-Frontend: Flutter
-Backend: Python (FastAPI)
-Database: PostgreSQL
+Frontend: Flutter,
+Backend: Python (FastAPI),
+Database: PostgreSQL,
 Authentication: JWT (JSON Web Tokens)""",
         githubUrl: "https://github.com/Rosie1028/FinanceTracker",
         liveUrl: "https://taskdashboard.rosangelaherrera.dev",
@@ -81,11 +81,11 @@ Authentication: JWT (JSON Web Tokens)""",
             'and publications. It serves as a modular, customizable proof-of-concept for building conversational interfaces in '
             'organizational settings.',
         technologies: """
-Python: Core backend logic and data handling.
-Streamlit: Web framework for building the interactive chat interface.
-Custom CSS: Used to style and customize the frontend appearance.
-In-Memory Data Storage: Sample data stored in Python dictionaries for quick prototyping.
-Modular Architecture: Backend logic separated into agents for easy customization.""",
+Python,
+Streamlit,
+Custom CSS,
+In-Memory Data Storage,
+Modular Architecture""",
         githubUrl: "https://github.com/Rosie1028/Company_chatbot_demo",
         liveUrl: "https://weather.rosangelaherrera.dev",
         featured: false,
@@ -99,11 +99,11 @@ Modular Architecture: Backend logic separated into agents for easy customization
             'log exercises, and track progress over time. Built for personal use and currently under active development, '
             'the app aims to provide a simple, cross-platform solution for managing fitness routines and staying motivated.',
         technologies: """
-Frontend: Flutter
-Backend: Python (FastAPI)
-Database: SQLite (initial setup; may migrate to PostgreSQL)
-Authentication: JWT (planned)
-Cross-Platform Support: Designed for mobile and web deployment""",
+ Flutter,
+ Python (FastAPI),
+ SQLite,
+JWT (planned),
+Cross-Platform Support""",
         githubUrl: " https://github.com/Rosie1028/Tracker_backend",
         liveUrl: "https://recipes.rosangelaherrera.dev",
         featured: true,

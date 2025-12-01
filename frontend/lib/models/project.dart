@@ -50,6 +50,19 @@ class Project {
   }
 
   List<String> get technologiesList {
-    return technologies.split(',').map((tech) => tech.trim()).toList();
+    // Split by comma and newline, then clean up each technology
+    return technologies
+        .split(RegExp(r'[,\n]')) // Split by comma or newline
+        .map((tech) => tech.trim()) // Remove whitespace
+        .where((tech) => tech.isNotEmpty) // Remove empty strings
+        .map((tech) {
+          // Remove prefixes like "Frontend:", "Backend:", etc.
+          final colonIndex = tech.indexOf(':');
+          if (colonIndex > 0 && colonIndex < tech.length - 1) {
+            return tech.substring(colonIndex + 1).trim();
+          }
+          return tech;
+        })
+        .toList();
   }
 }

@@ -164,36 +164,51 @@ class ProjectCard extends StatelessWidget {
           //         );
           //       }).toList(),
           // ),
-          Column(
+          Wrap(
+            spacing: 10, // Horizontal spacing between chips
+            runSpacing: 10, // Vertical spacing when wrapping
             children: project.technologiesList.take(5).map((tech) {
               return Container(
-                width: double.infinity, // 👈 makes the card stretch full width
-                margin:
-                    const EdgeInsets.only(bottom: 8), // spacing between cards
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                margin: const EdgeInsets.only(
+                    right: 4, bottom: 4), // Extra margin for separation
                 decoration: BoxDecoration(
-                  color:
-                      const Color(0xFF6A1B9A).withOpacity(0.1), // Light purple
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: const Color(0xFF6A1B9A).withOpacity(0.3), // Purple
-                    width: 1,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      const Color(0xFFFFF8E1), // Light gold background
+                      const Color(0xFFFFF9C4), // Slightly darker gold
+                    ],
                   ),
+                  borderRadius: BorderRadius.circular(20), // Pill shape
+                  border: Border.all(
+                    color: const Color(0xFFD4AF37), // Gold border
+                    width: 1.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFD4AF37).withOpacity(0.25),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                      spreadRadius: 0,
+                    ),
+                  ],
                 ),
                 child: Text(
-                  tech,
+                  tech.trim(),
                   style: GoogleFonts.inter(
-                    fontSize: 12,
-                    color: const Color(0xFF6A1B9A), // Purple
-                    fontWeight: FontWeight.w500,
+                    fontSize: 11,
+                    color: const Color(0xFFB8860B), // Dark gold text
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               );
             }).toList(),
           ),
 
-          const SizedBox(height: 12),
+          // const SizedBox(height: 5),
 
           // Action Buttons
           Row(
