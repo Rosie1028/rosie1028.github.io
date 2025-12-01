@@ -78,19 +78,19 @@ class _FooterSectionState extends State<FooterSection> {
     return InputDecoration(
       labelText: label,
       filled: true,
-      fillColor: Colors.white.withOpacity(0.05),
-      labelStyle: const TextStyle(color: Colors.white70),
+      fillColor: Colors.grey.shade50,
+      labelStyle: const TextStyle(color: Colors.black54),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Colors.white24),
+        borderSide: BorderSide(color: Colors.grey.shade300),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Colors.white12),
+        borderSide: BorderSide(color: Colors.grey.shade300),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Colors.tealAccent),
+        borderSide: const BorderSide(color: Color(0xFF6A1B9A)), // Purple
       ),
     );
   }
@@ -102,9 +102,16 @@ class _FooterSectionState extends State<FooterSection> {
       margin: const EdgeInsets.symmetric(vertical: 48),
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
       decoration: BoxDecoration(
-        color: const Color(0xFF121212),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: Colors.white10),
+        border: Border.all(color: Colors.grey.shade200),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -115,7 +122,7 @@ class _FooterSectionState extends State<FooterSection> {
               Text(
                 'Let’s build something together',
                 style: GoogleFonts.inter(
-                  color: Colors.white,
+                  color: Colors.black87,
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
                 ),
@@ -123,7 +130,7 @@ class _FooterSectionState extends State<FooterSection> {
               const SizedBox(height: 12),
               Text(
                 'Send me a quick message or grab a copy of my CV.',
-                style: GoogleFonts.inter(color: Colors.white70, fontSize: 16),
+                style: GoogleFonts.inter(color: Colors.black54, fontSize: 16),
               ),
               const SizedBox(height: 32),
               Flex(
@@ -186,7 +193,7 @@ class _ContactForm extends StatelessWidget {
         children: [
           TextFormField(
             controller: nameCtrl,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.black87),
             decoration: fieldDecorationBuilder('Your name'),
             validator:
                 (value) =>
@@ -196,7 +203,7 @@ class _ContactForm extends StatelessWidget {
           TextFormField(
             controller: emailCtrl,
             keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.black87),
             decoration: fieldDecorationBuilder('Email'),
             validator: (value) {
               if (value == null || value.trim().isEmpty) return 'Required';
@@ -210,7 +217,7 @@ class _ContactForm extends StatelessWidget {
             controller: messageCtrl,
             minLines: 4,
             maxLines: 6,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.black87),
             decoration: fieldDecorationBuilder('Message'),
             validator:
                 (value) =>
@@ -225,7 +232,7 @@ class _ContactForm extends StatelessWidget {
               label: Text(isSending ? 'Sending...' : 'Send message'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.tealAccent.withOpacity(0.2),
+                backgroundColor: const Color(0xFF6A1B9A), // Purple
                 foregroundColor: Colors.white,
               ),
             ),
@@ -256,7 +263,7 @@ class _FooterDetails extends StatelessWidget {
           icon: const Icon(Icons.download),
           label: const Text('Download CV'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.tealAccent.withOpacity(0.2),
+            backgroundColor: const Color(0xFFD4AF37), // Gold
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           ),
@@ -264,12 +271,12 @@ class _FooterDetails extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           'Prefer email? Drop me a line at',
-          style: GoogleFonts.inter(color: Colors.white70),
+          style: GoogleFonts.inter(color: Colors.black54),
         ),
         Text(
           personalInfo.email,
           style: GoogleFonts.inter(
-            color: Colors.white,
+            color: const Color(0xFF6A1B9A), // Purple
             fontWeight: FontWeight.bold,
           ),
         ),

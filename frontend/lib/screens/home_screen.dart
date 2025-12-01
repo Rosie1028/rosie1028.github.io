@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0A0A),
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           // App Bar
@@ -46,15 +46,26 @@ class _HomeScreenState extends State<HomeScreen> {
             expandedHeight: 120.0,
             floating: false,
             pinned: true,
-            backgroundColor: const Color(0xFF1A1A1A),
+            backgroundColor: Colors.white,
             elevation: 0,
             flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: const Color(0xFFD4AF37).withOpacity(0.2), // Subtle gold border
+                      width: 1,
+                    ),
+                  ),
+                ),
+              ),
               title: Text(
-                'Rosangela Herrera\'s Portfolio',
+                'Portfolio',
                 style: GoogleFonts.inter(
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFFB8860B), // Gold color
+                  letterSpacing: 0.5,
                 ),
               ),
               centerTitle: true,

@@ -6,20 +6,17 @@ class StaticDataService {
     return PersonalInfo(
       name: "Rosangela Herrera",
       title:
-          "Software Developer | Data Analyst | Educator",
+          "Data Analyst | AI Developer | Educator | Exploring AI for Learning & Wellbeing",
       email: "rosangelahs@icloud.com",
       phone: "+1 (561) 574-4947",
       location: "Austin, TX",
       bio:
-          'I’m a Software Engineer with a strong interest in how technology can support learning, wellbeing, and human development. '
-          ' I focus on creating practical solutions that genuinely help people, using technology thoughtfully rather than excessively. '
-          'My background spans software engineering, customer service, and education. I value clarity, structure, and '
-          ' continuous improvement in everything I do. '
-          'I’m naturally analytical and intellectually curious, drawn to exploring ideas across disciplines. '
-          ' This broad perspective helps me approach problems with depth and creativity, always seeking connections '
-          ' that lead to better, more inclusive solutions. '
-          'Currently, I’m exploring the intersection of AI, psychology, and education, with the long-term goal of developing innovative, '
-          'human-centered technologies that are both effective and responsible. ',
+"""- I’m a Software Engineer with a background in software development, customer service, sales, and education. 
+- I am passionate about exploring how artificial intelligence can be applied across different fields to improve learning, well-being, and human development. 
+- My journey into technology is driven by curiosity and a commitment to creating solutions that are practical, inclusive, and genuinely helpful. 
+- I aim to use technology thoughtfully, empowering people, enriching lives, and supporting growth without excess or distraction. 
+- I design wellbeing-centered solutions that solve real problems."""
+        ,
       linkedinUrl: "https://linkedin.com/in/rosangela-herrera",
       githubUrl: "https://github.com/rosangela-herrera",
       websiteUrl: "https://rosangelaherrera.dev",

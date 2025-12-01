@@ -32,7 +32,12 @@ class PortfolioApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
-          primarySwatch: Colors.teal,
+          primaryColor: const Color(0xFF6A1B9A), // Purple
+          colorScheme: ColorScheme.light(
+            primary: const Color(0xFF6A1B9A), // Purple
+            secondary: const Color(0xFFD4AF37), // Gold
+            surface: Colors.white,
+          ),
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
@@ -51,7 +56,12 @@ class PortfolioApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
-          primarySwatch: Colors.teal,
+          primaryColor: const Color(0xFF6A1B9A), // Purple
+          colorScheme: ColorScheme.light(
+            primary: const Color(0xFF6A1B9A), // Purple
+            secondary: const Color(0xFFD4AF37), // Gold
+            surface: Colors.white,
+          ),
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,

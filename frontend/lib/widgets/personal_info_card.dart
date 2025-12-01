@@ -15,15 +15,12 @@ class PersonalInfoCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF1A1A1A), Color(0xFF2D2D2D)],
-        ),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.grey.shade200),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -43,7 +40,7 @@ class PersonalInfoCard extends StatelessWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6366F1).withOpacity(0.3),
+                      color: const Color(0xFF6A1B9A).withOpacity(0.3), // Purple
                       blurRadius: 20,
                       offset: const Offset(0, 5),
                     ),
@@ -63,8 +60,8 @@ class PersonalInfoCard extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   gradient: const LinearGradient(
                                     colors: [
-                                      Color(0xFF6366F1),
-                                      Color(0xFF8B5CF6),
+                                      Color(0xFF6A1B9A), // Purple
+                                      Color(0xFFD4AF37), // Gold
                                     ],
                                   ),
                                 ),
@@ -117,7 +114,7 @@ class PersonalInfoCard extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -125,7 +122,7 @@ class PersonalInfoCard extends StatelessWidget {
                       personalInfo.title,
                       style: GoogleFonts.inter(
                         fontSize: 16,
-                        color: const Color(0xFF6366F1),
+                        color: const Color(0xFF6A1B9A), // Purple
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -163,7 +160,7 @@ class PersonalInfoCard extends StatelessWidget {
               personalInfo.bio!,
               style: GoogleFonts.inter(
                 fontSize: 16,
-                color: Colors.white70,
+                color: Colors.black87,
                 height: 1.6,
               ),
             ),
@@ -230,7 +227,7 @@ class PersonalInfoCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.05),
+          color: Colors.grey.shade100,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -240,7 +237,7 @@ class PersonalInfoCard extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: GoogleFonts.inter(fontSize: 14, color: Colors.white70),
+                style: GoogleFonts.inter(fontSize: 14, color: Colors.black87),
               ),
             ),
           ],
@@ -260,11 +257,11 @@ class PersonalInfoCard extends StatelessWidget {
         width: 48,
         height: 48,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.grey.shade50,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+          border: Border.all(color: Colors.grey.shade300, width: 1),
         ),
-        child: Icon(icon, color: Colors.white70, size: 20),
+        child: Icon(icon, color: Colors.black87, size: 20),
       ),
     );
   }
