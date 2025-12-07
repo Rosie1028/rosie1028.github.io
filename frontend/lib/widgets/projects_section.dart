@@ -16,17 +16,13 @@ class ProjectsSection extends StatelessWidget {
       children: [
         // Section Header
         Text(
-          'Projects',
+          'Here are some of my favorite projects',
           style: GoogleFonts.inter(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFFB8860B), // Gold color
+            letterSpacing: 0.5,
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Here are some of my recent projects',
-          style: GoogleFonts.inter(fontSize: 16, color: Colors.black54),
         ),
         const SizedBox(height: 24),
 
@@ -182,7 +178,7 @@ class ProjectCard extends StatelessWidget {
                       const Color(0xFFFFF9C4), // Slightly darker gold
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(20), // Pill shape
+                  borderRadius: BorderRadius.circular(10), // Pill shape
                   border: Border.all(
                     color: const Color(0xFFD4AF37), // Gold border
                     width: 1.5,
@@ -208,7 +204,7 @@ class ProjectCard extends StatelessWidget {
             }).toList(),
           ),
 
-          // const SizedBox(height: 5),
+          const SizedBox(height: 10),
 
           // Action Buttons
           Row(

@@ -11,14 +11,14 @@ class StaticDataService {
       phone: "+1 (561) 574-4947",
       location: "Austin, TX",
       bio:
-"""- I’m a Software Engineer with a background in software development, customer service, sales, and education. 
+          """- I’m a Software Engineer with a background in software development, customer service, sales, and education. 
 - I am passionate about exploring how artificial intelligence can be applied across different fields to improve learning, well-being, and human development. 
 - My journey into technology is driven by curiosity and a commitment to creating solutions that are practical, inclusive, and genuinely helpful. 
 - I aim to use technology thoughtfully, empowering people, enriching lives, and supporting growth without excess or distraction. 
-- I design wellbeing-centered solutions that solve real problems."""
-        ,
-      linkedinUrl: "https://linkedin.com/in/rosangela-herrera",
-      githubUrl: "https://github.com/rosangela-herrera",
+- I design wellbeing-centered solutions that solve real problems.""",
+      linkedinUrl:
+          "https://www.linkedin.com/in/rosangela-herrera-suarez-a22759217",
+      githubUrl: "https://github.com/Rosie1028",
       websiteUrl: "https://rosangelaherrera.dev",
       imagePath: "images/IMG_8959.jpg",
       resumeUrl: "https://rosangelaherrera.dev/assets/Rosangela_Herrera_CV.pdf",
@@ -37,7 +37,7 @@ class StaticDataService {
             'summarization.To support this system, I scraped and compiled a dataset of Cuban news articles and their corresponding '
             'summaries, which I published on Kaggle: Cuban News Dataset. Although I did not complete fine-tuning the model, I used this '
             'dataset to evaluate the quality of generated summaries by comparing them with human-written ones. ',
-        technologies: """ 
+        technologies: """
 Python,
 FastAPI,
 PyTorch,
@@ -60,7 +60,6 @@ Web Scraping (Python)
             'a scalable solution designed to help individuals and households manage their finances more effectively. '
             'The app supports budgeting, spending analysis, debt tracking, and financial reporting—all within a secure and '
             'user-friendly interface. ',
-
         technologies: """
 Frontend: Flutter,
 Backend: Python (FastAPI),
@@ -104,7 +103,7 @@ Modular Architecture""",
  SQLite,
 JWT (planned),
 Cross-Platform Support""",
-        githubUrl: " https://github.com/Rosie1028/Tracker_backend",
+        githubUrl: "https://github.com/Rosie1028/Tracker_backend",
         liveUrl: "https://recipes.rosangelaherrera.dev",
         featured: true,
         createdAt: "2023-12-20T16:45:00Z",
