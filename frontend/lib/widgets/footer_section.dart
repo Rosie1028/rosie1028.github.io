@@ -41,18 +41,49 @@ class _FooterSectionState extends State<FooterSection> {
 
     FocusScope.of(context).unfocus();
     setState(() => _isSending = true);
-    await Future.delayed(const Duration(seconds: 1));
-    setState(() => _isSending = false);
 
-    _nameCtrl.clear();
-    _emailCtrl.clear();
-    _messageCtrl.clear();
+    try {
+      // Create mailto link with form data
+      final name = _nameCtrl.text.trim();
+      final email = _emailCtrl.text.trim();
+      final message = _messageCtrl.text.trim();
+      final subject = 'Portfolio Contact: Message from $name';
+      final body = 'Name: $name\nEmail: $email\n\nMessage:\n$message';
 
-    messenger?.showSnackBar(
-      const SnackBar(
-        content: Text('Thanks for reaching out! I’ll get back to you shortly.'),
-      ),
-    );
+      final mailtoUrl = 'mailto:${widget.personalInfo.email}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}';
+      final uri = Uri.parse(mailtoUrl);
+
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+        // Clear form after successful launch
+        _nameCtrl.clear();
+        _emailCtrl.clear();
+        _messageCtrl.clear();
+        
+        messenger?.showSnackBar(
+          const SnackBar(
+            content: Text('Opening your email client...'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      } else {
+        messenger?.showSnackBar(
+          const SnackBar(
+            content: Text('Unable to open email client. Please email directly.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    } catch (e) {
+      messenger?.showSnackBar(
+        SnackBar(
+          content: Text('Error: ${e.toString()}'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    } finally {
+      setState(() => _isSending = false);
+    }
   }
 
   Future<void> _handleDownloadCv() async {

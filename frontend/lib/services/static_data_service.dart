@@ -21,7 +21,8 @@ class StaticDataService {
       githubUrl: "https://github.com/Rosie1028",
       websiteUrl: "https://rosangelaherrera.dev",
       imagePath: "images/IMG_8959.jpg",
-      resumeUrl: "https://rosangelaherrera.dev/assets/Rosangela_Herrera_CV.pdf",
+      resumeUrl:
+          "https://drive.google.com/uc?export=download&id=16oYJz0puaqjSlyPr6i5edZEEgEW2OEN4",
     );
   }
 
@@ -48,6 +49,10 @@ Web Scraping (Python)
         githubUrl: "https://github.com/Rosie1028/nn_api",
         liveUrl:
             "https://play.google.com/store/apps/details?id=com.example.ecommerce",
+        imageUrls: [
+          "images/summary1.jpeg",
+          "images/summary2.jpeg",
+        ],
         featured: true,
         createdAt: "2024-01-15T10:30:00Z",
       ),
@@ -67,6 +72,10 @@ Database: PostgreSQL,
 Authentication: JWT (JSON Web Tokens)""",
         githubUrl: "https://github.com/Rosie1028/FinanceTracker",
         liveUrl: "https://taskdashboard.rosangelaherrera.dev",
+        imageUrls: [
+          "images/budget1.jpeg",
+          "images/budget2.jpeg",
+        ],
         featured: true,
         createdAt: "2024-01-10T14:20:00Z",
       ),

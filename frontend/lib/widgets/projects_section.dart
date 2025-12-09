@@ -27,18 +27,22 @@ class ProjectsSection extends StatelessWidget {
         const SizedBox(height: 24),
 
         // Projects Grid
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.8,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-          ),
-          itemCount: projects.length,
-          itemBuilder: (context, index) {
-            return ProjectCard(project: projects[index]);
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final crossAxisCount = constraints.maxWidth > 900 ? 2 : 1;
+            return Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              alignment: WrapAlignment.start,
+              children: projects.map((project) {
+                return SizedBox(
+                  width: crossAxisCount == 2
+                      ? (constraints.maxWidth - 16) / 2
+                      : constraints.maxWidth,
+                  child: ProjectCard(project: project),
+                );
+              }).toList(),
+            );
           },
         ),
       ],
@@ -69,6 +73,7 @@ class ProjectCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           // Project Header
           Row(
@@ -111,26 +116,27 @@ class ProjectCard extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
 
-          // Project Description
-          Expanded(
-            child: Text(
-              project.description,
-              style: GoogleFonts.inter(
-                fontSize: 12,
-                color: Colors.black87,
-                height: 1.6,
+          // Project Description (fixed height)
+          SizedBox(
+            height: 80, // Fixed height for all descriptions
+            child: SingleChildScrollView(
+              child: Text(
+                project.description,
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  color: Colors.black87,
+                  height: 1.6,
+                ),
+                textAlign: TextAlign.justify,
               ),
-              textAlign: TextAlign.justify,
-              //maxLines: 3,
-              // overflow: TextOverflow.ellipsis,
             ),
           ),
 
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
 
-          // // Technologies
+          // Technologies
           // Wrap(
           //   spacing: 6,
           //   runSpacing: 6,
@@ -204,7 +210,35 @@ class ProjectCard extends StatelessWidget {
             }).toList(),
           ),
 
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
+
+          // Project Images
+          if (project.allImages.isNotEmpty) ...[
+            SizedBox(
+              height: 140,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: project.allImages.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 200,
+                    margin: EdgeInsets.only(
+                      right: index < project.allImages.length - 1 ? 12 : 0,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey.shade200),
+                      image: DecorationImage(
+                        image: AssetImage(project.allImages[index]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
 
           // Action Buttons
           Row(
