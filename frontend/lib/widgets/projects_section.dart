@@ -26,20 +26,36 @@ class ProjectsSection extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        // Projects Grid
+        // Projects Grid - Using Wrap with equal height rows
         LayoutBuilder(
           builder: (context, constraints) {
             final crossAxisCount = constraints.maxWidth > 900 ? 2 : 1;
-            return Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              alignment: WrapAlignment.start,
-              children: projects.map((project) {
-                return SizedBox(
-                  width: crossAxisCount == 2
-                      ? (constraints.maxWidth - 16) / 2
-                      : constraints.maxWidth,
-                  child: ProjectCard(project: project),
+            final cardWidth = crossAxisCount == 2
+                ? (constraints.maxWidth - 16) / 2
+                : constraints.maxWidth;
+
+            // Group projects into rows
+            final rows = <List<Project>>[];
+            for (int i = 0; i < projects.length; i += crossAxisCount) {
+              rows.add(projects.sublist(
+                  i,
+                  i + crossAxisCount > projects.length
+                      ? projects.length
+                      : i + crossAxisCount));
+            }
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: rows.map((rowProjects) {
+                return _EqualHeightRow(
+                  cardWidth: cardWidth,
+                  spacing: 16,
+                  children: rowProjects.map((project) {
+                    return SizedBox(
+                      width: cardWidth,
+                      child: ProjectCard(project: project),
+                    );
+                  }).toList(),
                 );
               }).toList(),
             );
@@ -73,7 +89,7 @@ class ProjectCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           // Project Header
           Row(
@@ -143,9 +159,8 @@ class ProjectCard extends StatelessWidget {
 
           const SizedBox(height: 6),
 
-          // Project Description (fixed height)
-          SizedBox(
-            height: 80, // Fixed height for all descriptions
+          // Project Description
+          Expanded(
             child: SingleChildScrollView(
               child: Text(
                 project.description,
@@ -265,6 +280,9 @@ class ProjectCard extends StatelessWidget {
             const SizedBox(height: 12),
           ],
 
+          // Spacer to push button to bottom
+          const Spacer(),
+
           // Action Buttons
           Row(
             children: [
@@ -346,5 +364,41 @@ class ProjectCard extends StatelessWidget {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
+  }
+}
+
+class _EqualHeightRow extends StatelessWidget {
+  final List<Widget> children;
+  final double cardWidth;
+  final double spacing;
+
+  const _EqualHeightRow({
+    required this.children,
+    required this.cardWidth,
+    required this.spacing,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: spacing),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: children.asMap().entries.map((entry) {
+            final index = entry.key;
+            final child = entry.value;
+            return Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: index < children.length - 1 ? spacing : 0,
+                ),
+                child: child,
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
   }
 }
