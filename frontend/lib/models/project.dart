@@ -8,6 +8,7 @@ class Project {
   final String? imageUrl;
   final List<String>? imageUrls;
   final bool featured;
+  final bool underDevelopment;
   final String createdAt;
 
   Project({
@@ -20,6 +21,7 @@ class Project {
     this.imageUrl,
     this.imageUrls,
     required this.featured,
+    this.underDevelopment = false,
     required this.createdAt,
   });
 
@@ -36,6 +38,7 @@ class Project {
           ? List<String>.from(json['image_urls'])
           : null,
       featured: json['featured'],
+      underDevelopment: json['under_development'] ?? false,
       createdAt: json['created_at'],
     );
   }
@@ -51,6 +54,7 @@ class Project {
       'image_url': imageUrl,
       'image_urls': imageUrls,
       'featured': featured,
+      'under_development': underDevelopment,
       'created_at': createdAt,
     };
   }

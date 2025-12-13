@@ -90,12 +90,37 @@ class ProjectCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
+              if (project.underDevelopment)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  margin: const EdgeInsets.only(left: 8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6A1B9A).withOpacity(0.15), // Purple
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: const Color(0xFF6A1B9A), // Purple
+                      width: 1,
+                    ),
+                  ),
+                  child: Text(
+                    'Under Development',
+                    style: GoogleFonts.inter(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF6A1B9A), // Purple
+                    ),
+                  ),
+                ),
               if (project.featured)
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
                     vertical: 4,
                   ),
+                  margin: const EdgeInsets.only(left: 8),
                   decoration: BoxDecoration(
                     color: const Color(0xFFD4AF37).withOpacity(0.15), // Gold
                     borderRadius: BorderRadius.circular(12),
