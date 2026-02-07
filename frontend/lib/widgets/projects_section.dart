@@ -18,9 +18,9 @@ class ProjectsSection extends StatelessWidget {
         Text(
           'Here are some of my favorite projects',
           style: GoogleFonts.inter(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            color: const Color(0xFFB8860B), // Gold color
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: const Color(0xFF10B981), // Emerald
             letterSpacing: 0.5,
           ),
         ),
@@ -47,7 +47,7 @@ class ProjectsSection extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: rows.map((rowProjects) {
-                return _EqualHeightRow(
+                return EqualHeightRow(
                   cardWidth: cardWidth,
                   spacing: 16,
                   children: rowProjects.map((project) {
@@ -74,16 +74,17 @@ class ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade200, width: 1),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFF10B981).withOpacity(0.2), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+            color: const Color(0xFF10B981).withOpacity(0.1),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+            spreadRadius: 0,
           ),
         ],
       ),
@@ -109,16 +110,16 @@ class ProjectCard extends StatelessWidget {
               if (project.underDevelopment)
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                    horizontal: 10,
+                    vertical: 6,
                   ),
                   margin: const EdgeInsets.only(left: 8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6A1B9A).withOpacity(0.15), // Purple
+                    color: const Color(0xFF000000), // Black
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: const Color(0xFF6A1B9A), // Purple
-                      width: 1,
+                      color: const Color(0xFF10B981), // Emerald
+                      width: 1.5,
                     ),
                   ),
                   child: Text(
@@ -126,31 +127,32 @@ class ProjectCard extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xFF6A1B9A), // Purple
+                      color: const Color(0xFF10B981), // Emerald
                     ),
                   ),
                 ),
               if (project.featured)
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                    horizontal: 10,
+                    vertical: 6,
                   ),
                   margin: const EdgeInsets.only(left: 8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD4AF37).withOpacity(0.15), // Gold
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: const Color(0xFFD4AF37), // Gold
-                      width: 1,
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color(0xFF10B981), // Emerald
+                        Color(0xFF059669), // Dark Emerald
+                      ],
                     ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     'Featured',
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xFFB8860B), // Darker gold
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -209,29 +211,22 @@ class ProjectCard extends StatelessWidget {
           Wrap(
             spacing: 10, // Horizontal spacing between chips
             runSpacing: 10, // Vertical spacing when wrapping
-            children: project.technologiesList.take(5).map((tech) {
+            children: project.technologiesList.map((tech) {
               return Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 margin: const EdgeInsets.only(
                     right: 4, bottom: 4), // Extra margin for separation
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      const Color(0xFFFFF8E1), // Light gold background
-                      const Color(0xFFFFF9C4), // Slightly darker gold
-                    ],
-                  ),
+                  color: const Color(0xFF10B981).withOpacity(0.1), // Light emerald background
                   borderRadius: BorderRadius.circular(10), // Pill shape
                   border: Border.all(
-                    color: const Color(0xFFD4AF37), // Gold border
+                    color: const Color(0xFF10B981), // Emerald border
                     width: 1.5,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFFD4AF37).withOpacity(0.25),
+                      color: const Color(0xFF10B981).withOpacity(0.2),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                       spreadRadius: 0,
@@ -242,7 +237,7 @@ class ProjectCard extends StatelessWidget {
                   tech.trim(),
                   style: GoogleFonts.inter(
                     fontSize: 11,
-                    color: const Color(0xFFB8860B), // Dark gold text
+                    color: const Color(0xFF059669), // Dark emerald text
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -267,7 +262,7 @@ class ProjectCard extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey.shade200),
+                      border: Border.all(color: const Color(0xFF10B981).withOpacity(0.3), width: 1.5),
                       image: DecorationImage(
                         image: AssetImage(project.allImages[index]),
                         fit: BoxFit.cover,
@@ -294,17 +289,17 @@ class ProjectCard extends StatelessWidget {
                     onTap: () => _launchUrl(project.githubUrl!),
                   ),
                 ),
-              // if (project.githubUrl != null && project.liveUrl != null)
-              //   const SizedBox(width: 8),
-              // if (project.liveUrl != null)
-              //   Expanded(
-              //     child: _buildActionButton(
-              //       icon: FontAwesomeIcons.externalLinkAlt,
-              //       label: 'Details',
-              //       onTap: () => _launchUrl(project.liveUrl!),
-              //       isPrimary: true,
-              //     ),
-              //   ),
+              if (project.githubUrl != null && project.fileUrl != null)
+                const SizedBox(width: 8),
+              if (project.fileUrl != null)
+                Expanded(
+                  child: _buildActionButton(
+                    icon: FontAwesomeIcons.download,
+                    label: 'Download',
+                    onTap: () => _launchUrl(project.fileUrl!),
+                    isPrimary: true,
+                  ),
+                ),
             ],
           ),
         ],
@@ -324,14 +319,22 @@ class ProjectCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
+          gradient: isPrimary
+              ? const LinearGradient(
+                  colors: [
+                    Color(0xFF10B981), // Emerald
+                    Color(0xFF059669), // Dark Emerald
+                  ],
+                )
+              : null,
           color: isPrimary
-              ? const Color(0xFF6A1B9A) // Purple
-              : const Color(0xFF6A1B9A).withOpacity(0.1), // Light purple
-          borderRadius: BorderRadius.circular(6),
+              ? null
+              : const Color(0xFF10B981).withOpacity(0.1), // Light emerald
+          borderRadius: BorderRadius.circular(8),
           border: isPrimary
               ? null
               : Border.all(
-                  color: const Color(0xFF6A1B9A).withOpacity(0.3), width: 1),
+                  color: const Color(0xFF10B981).withOpacity(0.4), width: 1.5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -339,7 +342,7 @@ class ProjectCard extends StatelessWidget {
             Icon(
               icon,
               color:
-                  isPrimary ? Colors.white : const Color(0xFF6A1B9A), // Purple
+                  isPrimary ? Colors.white : const Color(0xFF10B981), // Emerald
               size: 14,
             ),
             const SizedBox(width: 6),
@@ -350,7 +353,7 @@ class ProjectCard extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 color: isPrimary
                     ? Colors.white
-                    : const Color(0xFF6A1B9A), // Purple
+                    : const Color(0xFF10B981), // Emerald
               ),
             ),
           ],
@@ -367,12 +370,12 @@ class ProjectCard extends StatelessWidget {
   }
 }
 
-class _EqualHeightRow extends StatelessWidget {
+class EqualHeightRow extends StatelessWidget {
   final List<Widget> children;
   final double cardWidth;
   final double spacing;
 
-  const _EqualHeightRow({
+  const EqualHeightRow({
     required this.children,
     required this.cardWidth,
     required this.spacing,

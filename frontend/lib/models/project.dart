@@ -5,6 +5,7 @@ class Project {
   final String technologies;
   final String? githubUrl;
   final String? liveUrl;
+  final String? fileUrl; // For Excel files or other downloadable files
   final String? imageUrl;
   final List<String>? imageUrls;
   final bool featured;
@@ -18,6 +19,7 @@ class Project {
     required this.technologies,
     this.githubUrl,
     this.liveUrl,
+    this.fileUrl,
     this.imageUrl,
     this.imageUrls,
     required this.featured,
@@ -33,6 +35,7 @@ class Project {
       technologies: json['technologies'],
       githubUrl: json['github_url'],
       liveUrl: json['live_url'],
+      fileUrl: json['file_url'],
       imageUrl: json['image_url'],
       imageUrls: json['image_urls'] != null 
           ? List<String>.from(json['image_urls'])
@@ -51,6 +54,7 @@ class Project {
       'technologies': technologies,
       'github_url': githubUrl,
       'live_url': liveUrl,
+      'file_url': fileUrl,
       'image_url': imageUrl,
       'image_urls': imageUrls,
       'featured': featured,

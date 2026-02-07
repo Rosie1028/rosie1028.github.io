@@ -121,7 +121,7 @@ class _FooterSectionState extends State<FooterSection> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Color(0xFF6A1B9A)), // Purple
+        borderSide: const BorderSide(color: Color(0xFF10B981), width: 2), // Emerald
       ),
     );
   }
@@ -134,13 +134,14 @@ class _FooterSectionState extends State<FooterSection> {
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: Colors.grey.shade200),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFF10B981).withOpacity(0.2), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+            color: const Color(0xFF10B981).withOpacity(0.1),
+            blurRadius: 24,
+            offset: const Offset(0, 8),
+            spreadRadius: 0,
           ),
         ],
       ),
@@ -263,8 +264,12 @@ class _ContactForm extends StatelessWidget {
               label: Text(isSending ? 'Sending...' : 'Send message'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: const Color(0xFF6A1B9A), // Purple
+                backgroundColor: const Color(0xFF10B981), // Emerald
                 foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 2,
               ),
             ),
           ),
@@ -294,9 +299,14 @@ class _FooterDetails extends StatelessWidget {
           icon: const Icon(Icons.download),
           label: const Text('Download CV'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFD4AF37), // Gold
+            backgroundColor: const Color(0xFF000000), // Black
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: const BorderSide(color: Color(0xFF10B981), width: 2),
+            ),
+            elevation: 2,
           ),
         ),
         const SizedBox(height: 16),
@@ -307,7 +317,7 @@ class _FooterDetails extends StatelessWidget {
         Text(
           personalInfo.email,
           style: GoogleFonts.inter(
-            color: const Color(0xFF6A1B9A), // Purple
+            color: const Color(0xFF10B981), // Emerald
             fontWeight: FontWeight.bold,
           ),
         ),

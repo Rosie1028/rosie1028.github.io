@@ -125,4 +125,51 @@ Cross-Platform Support""",
   static List<Project> getFeaturedProjects() {
     return getProjects().where((project) => project.featured).toList();
   }
+
+  static List<Project> getExcelProjects() {
+    return [
+      Project(
+        id: 101,
+        title: "Behavior Data Analysis",
+        description:
+            """This project analyzes classroom behavior data for a 6‑year‑old student showing task refusal and task compliance over a two‑week period. The goal is to demonstrate Excel skills while interpreting behavior trends in a realistic educational scenario.
+
+The dataset includes:
+
+Frequency counts of task refusal (target behavior)
+
+Frequency counts of task compliance (replacement behavior)
+
+Daily notes describing contextual patterns
+
+A simple intervention: visual schedule + reinforcement""",
+        technologies:
+            "Excel, Data Analysis, Charts, Formulas, Data Visualization",
+        fileUrl: "assets/excel/Behavior Data Analysis.xlsx",
+        imageUrls: ["assets/images/excel1.png"],
+        featured: false,
+        createdAt: "2024-01-01T00:00:00Z",
+      ),
+    ];
+  }
+
+  static List<Project> getAIMLNotebooks() {
+    return [
+      Project(
+        id: 201,
+        title: "Sentiment Analysis using LSTM",
+        description:
+            "A simple end‑to‑end sentiment analysis model built from scratch using a custom tokenizer, "
+            " custom vocabulary, and a PyTorch LSTM network. The IMDB dataset is processed without torchtext, and the "
+            " model predicts whether a movie review is positive or negative.",
+        technologies:
+            "Python,PyTorch, Hugging Face Datasets, Custom tokenizer, Custom vocabulary, Custom numericalization, Google Colab",
+        githubUrl:
+            "https://github.com/Rosie1028/Colab-Projects/blob/main/Sentiment%20Analysis%20using%20LSTM.ipynb",
+        imageUrl: "assets/images/LSTM.png",
+        featured: false,
+        createdAt: "2024-01-01T00:00:00Z",
+      ),
+    ];
+  }
 }

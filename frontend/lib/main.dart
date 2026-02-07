@@ -32,17 +32,18 @@ class PortfolioApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
-          primaryColor: const Color(0xFF6A1B9A), // Purple
+          primaryColor: const Color(0xFF10B981), // Emerald
           colorScheme: ColorScheme.light(
-            primary: const Color(0xFF6A1B9A), // Purple
-            secondary: const Color(0xFFD4AF37), // Gold
+            primary: const Color(0xFF10B981), // Emerald
+            secondary: const Color(0xFF059669), // Dark Emerald
             surface: Colors.white,
+            onSurface: Colors.black87,
           ),
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: Colors.white, // White background
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            elevation: 1,
+            backgroundColor: Colors.white, // White
+            foregroundColor: Color(0xFF000000), // Black text
+            elevation: 0,
           ),
           textTheme: baseTextTheme,
           fontFamilyFallback: const ['Noto Sans', 'Arial', 'sans-serif'],
@@ -56,17 +57,18 @@ class PortfolioApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
-          primaryColor: const Color(0xFF6A1B9A), // Purple
+          primaryColor: const Color(0xFF10B981), // Emerald
           colorScheme: ColorScheme.light(
-            primary: const Color(0xFF6A1B9A), // Purple
-            secondary: const Color(0xFFD4AF37), // Gold
+            primary: const Color(0xFF10B981), // Emerald
+            secondary: const Color(0xFF059669), // Dark Emerald
             surface: Colors.white,
+            onSurface: Colors.black87,
           ),
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: Colors.white, // White background
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            elevation: 1,
+            backgroundColor: Colors.white, // White
+            foregroundColor: Color(0xFF000000), // Black text
+            elevation: 0,
           ),
         ),
         home: const HomeScreen(),
