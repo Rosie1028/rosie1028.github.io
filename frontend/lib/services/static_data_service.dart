@@ -6,23 +6,23 @@ class StaticDataService {
     return PersonalInfo(
       name: "Rosangela Herrera",
       title:
-          "Data Analyst | AI Developer | Educator | Exploring AI for Learning & Wellbeing",
+          "Software Developer | RBT | Educator",
       email: "rosangelahs@icloud.com",
       phone: "+1 (561) 574-4947",
       location: "Austin, TX",
-      bio:
-          """- I’m a Software Engineer with a background in software development, customer service, sales, and education. 
-- I am passionate about exploring how artificial intelligence can be applied across different fields to improve learning, well-being, and human development. 
-- My journey into technology is driven by curiosity and a commitment to creating solutions that are practical, inclusive, and genuinely helpful. 
-- I aim to use technology thoughtfully, empowering people, enriching lives, and supporting growth without excess or distraction. 
-- I design wellbeing-centered solutions that solve real problems.""",
+      bio: """
+          - I am a Software Engineer and Registered Behavior Technician with experience in development, management and education. 
+          - I am driven by curiosity and a genuine interest in improving how people interact with technology. 
+          - I care deeply about people and their well-being , and that shapes the way I approach problem-solving. 
+          - I enjoy thinking through challenges, building practical solutions and learning along the way.
+""",
       linkedinUrl:
           "https://www.linkedin.com/in/rosangela-herrera-suarez-a22759217",
       githubUrl: "https://github.com/Rosie1028",
       websiteUrl: "https://rosangelaherrera.dev",
-      imagePath: "assets/images/IMG_8959.jpg",
+      imagePath: "assets/images/Profile.png",
       resumeUrl:
-          "https://drive.google.com/uc?export=download&id=16oYJz0puaqjSlyPr6i5edZEEgEW2OEN4",
+          "https://drive.google.com/file/d/1-H3-LMAs0pghXVqNlVPzofbHYtLdNqH9/view?usp=drive_link",
     );
   }
 
