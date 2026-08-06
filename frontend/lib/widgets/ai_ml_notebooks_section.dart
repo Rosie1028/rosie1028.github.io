@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../models/project.dart';
-import 'projects_section.dart'; // Reuse ProjectCard and EqualHeightRow
+import '../theme/app_theme.dart';
+import 'projects_section.dart';
 
 class AIMLNotebooksSection extends StatelessWidget {
   final List<Project> notebooks;
@@ -17,19 +17,11 @@ class AIMLNotebooksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Section Header
-        Text(
-          'AI/ML Notebooks',
-          style: GoogleFonts.inter(
-            fontSize: 28,
-            fontWeight: FontWeight.w700,
-            color: const Color(0xFF10B981), // Emerald
-            letterSpacing: 0.5,
-          ),
+        const SectionHeader(
+          title: 'AI / ML Notebooks',
+          subtitle: 'Exploratory machine learning work and model experiments.',
         ),
-        const SizedBox(height: 24),
-
-        // Projects Grid - Using Wrap with equal height rows
+        const SizedBox(height: 28),
         LayoutBuilder(
           builder: (context, constraints) {
             final crossAxisCount = constraints.maxWidth > 900 ? 2 : 1;
@@ -37,7 +29,6 @@ class AIMLNotebooksSection extends StatelessWidget {
                 ? (constraints.maxWidth - 16) / 2
                 : constraints.maxWidth;
 
-            // Group projects into rows
             final rows = <List<Project>>[];
             for (int i = 0; i < notebooks.length; i += crossAxisCount) {
               rows.add(notebooks.sublist(
@@ -54,10 +45,7 @@ class AIMLNotebooksSection extends StatelessWidget {
                   cardWidth: cardWidth,
                   spacing: 16,
                   children: rowProjects.map((project) {
-                    return SizedBox(
-                      width: cardWidth,
-                      child: ProjectCard(project: project),
-                    );
+                    return ProjectCard(project: project);
                   }).toList(),
                 );
               }).toList(),

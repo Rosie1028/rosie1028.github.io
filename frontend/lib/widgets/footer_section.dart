@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../models/personal_info.dart';
+import '../theme/app_theme.dart';
 
 class FooterSection extends StatefulWidget {
   const FooterSection({super.key, required this.personalInfo});
@@ -43,23 +44,22 @@ class _FooterSectionState extends State<FooterSection> {
     setState(() => _isSending = true);
 
     try {
-      // Create mailto link with form data
       final name = _nameCtrl.text.trim();
       final email = _emailCtrl.text.trim();
       final message = _messageCtrl.text.trim();
       final subject = 'Portfolio Contact: Message from $name';
       final body = 'Name: $name\nEmail: $email\n\nMessage:\n$message';
 
-      final mailtoUrl = 'mailto:${widget.personalInfo.email}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}';
+      final mailtoUrl =
+          'mailto:${widget.personalInfo.email}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}';
       final uri = Uri.parse(mailtoUrl);
 
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
-        // Clear form after successful launch
         _nameCtrl.clear();
         _emailCtrl.clear();
         _messageCtrl.clear();
-        
+
         messenger?.showSnackBar(
           const SnackBar(
             content: Text('Opening your email client...'),
@@ -105,69 +105,25 @@ class _FooterSectionState extends State<FooterSection> {
     }
   }
 
-  InputDecoration _fieldDecoration(String label) {
-    return InputDecoration(
-      labelText: label,
-      filled: true,
-      fillColor: Colors.grey.shade50,
-      labelStyle: const TextStyle(color: Colors.black54),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide(color: Colors.grey.shade300),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide(color: Colors.grey.shade300),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Color(0xFF10B981), width: 2), // Emerald
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 48),
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFF10B981).withOpacity(0.2), width: 1.5),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF10B981).withOpacity(0.1),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-            spreadRadius: 0,
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(32),
+      decoration: AppDecorations.card(),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final isSmall = constraints.maxWidth < 900;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Let’s build something together',
-                style: GoogleFonts.inter(
-                  color: Colors.black87,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Send me a quick message or grab a copy of my CV.',
-                style: GoogleFonts.inter(color: Colors.black54, fontSize: 16),
+              const SectionHeader(
+                title: 'Get in Touch',
+                subtitle: 'Send a message or download my resume.',
               ),
               const SizedBox(height: 32),
               Flex(
                 direction: isSmall ? Axis.vertical : Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
@@ -176,12 +132,11 @@ class _FooterSectionState extends State<FooterSection> {
                       nameCtrl: _nameCtrl,
                       emailCtrl: _emailCtrl,
                       messageCtrl: _messageCtrl,
-                      fieldDecorationBuilder: _fieldDecoration,
                       isSending: _isSending,
                       onSubmit: _handleSubmit,
                     ),
                   ),
-                  SizedBox(width: isSmall ? 0 : 32, height: isSmall ? 32 : 0),
+                  SizedBox(width: isSmall ? 0 : 40, height: isSmall ? 32 : 0),
                   Expanded(
                     child: _FooterDetails(
                       personalInfo: widget.personalInfo,
@@ -204,7 +159,6 @@ class _ContactForm extends StatelessWidget {
     required this.nameCtrl,
     required this.emailCtrl,
     required this.messageCtrl,
-    required this.fieldDecorationBuilder,
     required this.isSending,
     required this.onSubmit,
   });
@@ -213,7 +167,6 @@ class _ContactForm extends StatelessWidget {
   final TextEditingController nameCtrl;
   final TextEditingController emailCtrl;
   final TextEditingController messageCtrl;
-  final InputDecoration Function(String label) fieldDecorationBuilder;
   final bool isSending;
   final VoidCallback onSubmit;
 
@@ -225,18 +178,17 @@ class _ContactForm extends StatelessWidget {
         children: [
           TextFormField(
             controller: nameCtrl,
-            style: const TextStyle(color: Colors.black87),
-            decoration: fieldDecorationBuilder('Your name'),
-            validator:
-                (value) =>
-                    value == null || value.trim().isEmpty ? 'Required' : null,
+            style: GoogleFonts.inter(color: AppColors.textPrimary),
+            decoration: AppDecorations.textField('Your name'),
+            validator: (value) =>
+                value == null || value.trim().isEmpty ? 'Required' : null,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           TextFormField(
             controller: emailCtrl,
             keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(color: Colors.black87),
-            decoration: fieldDecorationBuilder('Email'),
+            style: GoogleFonts.inter(color: AppColors.textPrimary),
+            decoration: AppDecorations.textField('Email'),
             validator: (value) {
               if (value == null || value.trim().isEmpty) return 'Required';
               final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
@@ -244,33 +196,23 @@ class _ContactForm extends StatelessWidget {
               return null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           TextFormField(
             controller: messageCtrl,
             minLines: 4,
             maxLines: 6,
-            style: const TextStyle(color: Colors.black87),
-            decoration: fieldDecorationBuilder('Message'),
-            validator:
-                (value) =>
-                    value == null || value.trim().isEmpty ? 'Required' : null,
+            style: GoogleFonts.inter(color: AppColors.textPrimary),
+            decoration: AppDecorations.textField('Message'),
+            validator: (value) =>
+                value == null || value.trim().isEmpty ? 'Required' : null,
           ),
           const SizedBox(height: 20),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: isSending ? null : onSubmit,
-              icon: const Icon(Icons.send),
+              icon: const Icon(Icons.send_outlined, size: 18),
               label: Text(isSending ? 'Sending...' : 'Send message'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: const Color(0xFF10B981), // Emerald
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 2,
-              ),
             ),
           ),
         ],
@@ -290,39 +232,66 @@ class _FooterDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ElevatedButton.icon(
-          onPressed: onDownloadCv,
-          icon: const Icon(Icons.download),
-          label: const Text('Download CV'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF000000), // Black
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: const BorderSide(color: Color(0xFF10B981), width: 2),
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Resume',
+            style: GoogleFonts.inter(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
             ),
-            elevation: 2,
           ),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'Prefer email? Drop me a line at',
-          style: GoogleFonts.inter(color: Colors.black54),
-        ),
-        Text(
-          personalInfo.email,
-          style: GoogleFonts.inter(
-            color: const Color(0xFF10B981), // Emerald
-            fontWeight: FontWeight.bold,
+          const SizedBox(height: 8),
+          Text(
+            'Download a copy of my CV to learn more about my experience and skills.',
+            style: GoogleFonts.inter(
+              fontSize: 14,
+              color: AppColors.textSecondary,
+              height: 1.5,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 20),
+          OutlinedButton.icon(
+            onPressed: onDownloadCv,
+            icon: const Icon(Icons.download_outlined, size: 18),
+            label: const Text('Download CV'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.textPrimary,
+              side: const BorderSide(color: AppColors.emerald, width: 1.5),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            'Prefer email?',
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              color: AppColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 4),
+          SelectableText(
+            personalInfo.email,
+            style: GoogleFonts.inter(
+              color: AppColors.emerald,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-
