@@ -9,12 +9,13 @@ class StaticDataService {
       email: "rosangelahs@icloud.com",
       phone: "+1 (561) 574-4947",
       location: "Austin, TX",
-      bio: """
-          - I am a Software Engineer and Registered Behavior Technician with experience in development, management and education. 
-          - I am driven by curiosity and a genuine interest in improving how people interact with technology. 
-          - I care deeply about people and their well-being , and that shapes the way I approach problem-solving. 
-          - I enjoy thinking through challenges, building practical solutions and learning along the way.
-""",
+      bio: """I'm a Software Engineer with a foundation in behavioral science as a Registered Behavior Technician (RBT) and I'm passionate about transforming data into actionable insights that make systems smarter and people's lives easier.
+
+My focus is on full-stack development, building scalable, user-centered applications with technologies like .NET, JavaScript, and Kubernetes. Everything I build is data-centered, because data is the information that drives change.
+
+My experience across development, management, and education gives me a well-rounded perspective on collaboration, problem-solving, and continuous growth.
+
+I'm currently exploring opportunities to contribute to projects that combine data-driven innovation with human-focused design and creating technology that truly makes a difference.""",
       linkedinUrl:
           "https://www.linkedin.com/in/rosangela-herrera-suarez-a22759217",
       githubUrl: "https://github.com/Rosie1028",
@@ -75,9 +76,10 @@ GitHub Pages""",
             "National News Summarizer is a full-stack application developed as my final thesis project during my Bachelor's degree. "
             'The project explores the power of Natural Language Processing (NLP) to automatically generate concise summaries from long-form '
             'news articles. It integrates a custom pipeline based on the NASES architecture and provides a user-friendly interface for real-time '
-            'summarization.To support this system, I scraped and compiled a dataset of Cuban news articles and their corresponding '
+            'summarization. To support this system, I scraped and compiled a dataset of Cuban news articles and their corresponding '
             'summaries, which I published on Kaggle: Cuban News Dataset. Although I did not complete fine-tuning the model, I used this '
-            'dataset to evaluate the quality of generated summaries by comparing them with human-written ones. ',
+            'dataset to evaluate the quality of generated summaries by comparing them with human-written ones. '
+            'A short walkthrough video is included in place of a live demo, since hosting the NLP pipeline would be cost-prohibitive.',
         technologies: """
 Python,
 FastAPI,
@@ -86,9 +88,30 @@ Transformers (Hugging Face),
 React,
 Web Scraping (Python)
 """,
-        githubUrl: "https://github.com/Rosie1028/nn_api",
+        githubUrl: "https://github.com/Rosie1028/nn_summarizer",
+        demoVideoUrl:
+            "https://drive.google.com/file/d/1_TZuz__UmFeRIXdTUOhRH00poEGc9Hme/view?usp=drive_link",
         featured: true,
         createdAt: "2024-01-15T10:30:00Z",
+      ),
+      Project(
+        id: 3,
+        title: "Company AI Assistant Demo",
+        description:
+            'Company AI Assistant Demo is a lightweight chatbot application developed using Streamlit and Python. '
+            'Originally built for a medical institution, it has been generalized for broader use as a company-facing assistant. '
+            'The chatbot simulates an internal AI assistant capable of answering predefined questions about projects, team members, '
+            'and publications. It serves as a modular, customizable proof-of-concept for building conversational interfaces in '
+            'organizational settings.',
+        technologies: """
+Python,
+Streamlit,
+Custom CSS,
+In-Memory Data Storage,
+Modular Architecture""",
+        githubUrl: "https://github.com/Rosie1028/Company_chatbot_demo",
+        featured: true,
+        createdAt: "2024-01-05T09:15:00Z",
       ),
 //       Project(
 //         id: 2,
@@ -108,25 +131,6 @@ Web Scraping (Python)
 //         featured: true,
 //         underDevelopment: true,
 //         createdAt: "2024-01-10T14:20:00Z",
-//       ),
-//       Project(
-//         id: 3,
-//         title: "Company AI Assistant Demo",
-//         description:
-//             'Company AI Assistant Demo is a lightweight chatbot application developed using Streamlit and Python. '
-//             'Originally built for a medical institution, it has been generalized for broader use as a company-facing assistant. '
-//             'The chatbot simulates an internal AI assistant capable of answering predefined questions about projects, team members, '
-//             'and publications. It serves as a modular, customizable proof-of-concept for building conversational interfaces in '
-//             'organizational settings.',
-//         technologies: """
-// Python,
-// Streamlit,
-// Custom CSS,
-// In-Memory Data Storage,
-// Modular Architecture""",
-//         githubUrl: "https://github.com/Rosie1028/Company_chatbot_demo",
-//         featured: false,
-//         createdAt: "2024-01-05T09:15:00Z",
 //       ),
 //       Project(
 //         id: 4,

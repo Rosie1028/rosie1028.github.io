@@ -4,12 +4,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../services/static_data_service.dart';
 import '../widgets/projects_section.dart';
-import '../widgets/excel_projects_section.dart';
 import '../widgets/ai_ml_notebooks_section.dart';
 import '../widgets/loading_widget.dart';
 import '../widgets/footer_section.dart';
 import '../widgets/decorative_elements.dart';
 import '../models/personal_info.dart';
+import '../models/project.dart';
 import '../theme/app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,10 +21,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
-  late final personalInfo = StaticDataService.getPersonalInfo();
-  late final projects = StaticDataService.getProjects();
-  late final excelProjects = StaticDataService.getExcelProjects();
-  late final aiMlNotebooks = StaticDataService.getAIMLNotebooks();
+  PersonalInfo get personalInfo => StaticDataService.getPersonalInfo();
+  List<Project> get projects => StaticDataService.getProjects();
+  List<Project> get aiMlNotebooks => StaticDataService.getAIMLNotebooks();
 
   @override
   void initState() {
@@ -63,11 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ProjectsSection(projects: projects),
                         const SizedBox(height: 56),
                         const DecorativeDivider(),
-                        ExcelProjectsSection(excelProjects: excelProjects),
-                        if (excelProjects.isNotEmpty) ...[
-                          const SizedBox(height: 56),
-                          const DecorativeDivider(),
-                        ],
                         AIMLNotebooksSection(notebooks: aiMlNotebooks),
                         if (aiMlNotebooks.isNotEmpty) ...[
                           const SizedBox(height: 56),
@@ -161,7 +155,11 @@ class _IntroSection extends StatelessWidget {
               children: [
                 if (personalInfo.email.isNotEmpty)
                   _IntroLink(
-                    icon: Icons.email_outlined,
+                    icon: const Icon(
+                      Icons.email_outlined,
+                      color: AppColors.emerald,
+                      size: 16,
+                    ),
                     label: personalInfo.email,
                     onTap: () async {
                       final uri = Uri(scheme: 'mailto', path: personalInfo.email);
@@ -170,7 +168,11 @@ class _IntroSection extends StatelessWidget {
                   ),
                 if (personalInfo.phone != null)
                   _IntroLink(
-                    icon: Icons.phone_outlined,
+                    icon: const Icon(
+                      Icons.phone_outlined,
+                      color: AppColors.emerald,
+                      size: 16,
+                    ),
                     label: personalInfo.phone!,
                     onTap: () async {
                       final uri = Uri(scheme: 'tel', path: personalInfo.phone);
@@ -179,16 +181,22 @@ class _IntroSection extends StatelessWidget {
                   ),
                 if (personalInfo.githubUrl != null)
                   _IntroLink(
-                    icon: FontAwesomeIcons.github,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.github,
+                      color: AppColors.emerald,
+                      size: 14,
+                    ),
                     label: 'GitHub',
-                    isFontAwesome: true,
                     onTap: () => _launchExternal(personalInfo.githubUrl!),
                   ),
                 if (personalInfo.linkedinUrl != null)
                   _IntroLink(
-                    icon: FontAwesomeIcons.linkedin,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.linkedin,
+                      color: AppColors.emerald,
+                      size: 14,
+                    ),
                     label: 'LinkedIn',
-                    isFontAwesome: true,
                     onTap: () => _launchExternal(personalInfo.linkedinUrl!),
                   ),
               ],
@@ -279,16 +287,14 @@ class _IntroSection extends StatelessWidget {
 }
 
 class _IntroLink extends StatelessWidget {
-  final IconData icon;
+  final Widget icon;
   final String label;
   final VoidCallback onTap;
-  final bool isFontAwesome;
 
   const _IntroLink({
     required this.icon,
     required this.label,
     required this.onTap,
-    this.isFontAwesome = false,
   });
 
   @override
@@ -301,10 +307,7 @@ class _IntroLink extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (isFontAwesome)
-              FaIcon(icon, color: AppColors.emerald, size: 14)
-            else
-              Icon(icon, color: AppColors.emerald, size: 16),
+            icon,
             const SizedBox(width: 8),
             Text(
               label,
@@ -343,16 +346,31 @@ class _AboutMeSection extends StatelessWidget {
         children: [
           const SectionHeader(title: 'About Me'),
           const SizedBox(height: 20),
-          Text(
-            personalInfo.bio!,
-            style: GoogleFonts.inter(
-              fontSize: 15,
-              color: AppColors.textSecondary,
-              height: 1.7,
-            ),
-          ),
+          ..._bioParagraphs(personalInfo.bio!),
         ],
       ),
     );
+  }
+
+  List<Widget> _bioParagraphs(String bio) {
+    final paragraphs = bio
+        .split(RegExp(r'\n\s*\n'))
+        .map((paragraph) => paragraph.trim())
+        .where((paragraph) => paragraph.isNotEmpty)
+        .toList();
+
+    return [
+      for (int i = 0; i < paragraphs.length; i++) ...[
+        Text(
+          paragraphs[i],
+          style: GoogleFonts.inter(
+            fontSize: 15,
+            color: AppColors.textSecondary,
+            height: 1.7,
+          ),
+        ),
+        if (i < paragraphs.length - 1) const SizedBox(height: 16),
+      ],
+    ];
   }
 }

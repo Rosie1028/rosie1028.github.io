@@ -145,40 +145,18 @@ class ProjectCard extends StatelessWidget {
 
             const SizedBox(height: 18),
 
-            Row(
-              children: [
-                if (project.githubUrl != null)
-                  Expanded(
-                    child: _buildActionButton(
-                      icon: FontAwesomeIcons.github,
-                      label: 'Code',
-                      onTap: () => _launchUrl(project.githubUrl!),
-                    ),
-                  ),
-                if (project.githubUrl != null &&
-                    (project.liveUrl != null || project.fileUrl != null))
-                  const SizedBox(width: 10),
-                if (project.liveUrl != null)
-                  Expanded(
-                    child: _buildActionButton(
-                      icon: FontAwesomeIcons.externalLinkAlt,
-                      label: 'Live Demo',
-                      onTap: () => _launchUrl(project.liveUrl!),
-                      isPrimary: true,
-                    ),
-                  ),
-                if (project.liveUrl != null && project.fileUrl != null)
-                  const SizedBox(width: 10),
-                if (project.fileUrl != null)
-                  Expanded(
-                    child: _buildActionButton(
-                      icon: FontAwesomeIcons.download,
-                      label: 'Download',
-                      onTap: () => _launchUrl(project.fileUrl!),
-                      isPrimary: project.liveUrl == null,
-                    ),
-                  ),
-              ],
+            Builder(
+              builder: (context) {
+                final actions = _actionButtons();
+                return Row(
+                  children: [
+                    for (int i = 0; i < actions.length; i++) ...[
+                      if (i > 0) const SizedBox(width: 10),
+                      Expanded(child: actions[i]),
+                    ],
+                  ],
+                );
+              },
             ),
           ],
         ),
@@ -186,8 +164,41 @@ class ProjectCard extends StatelessWidget {
     );
   }
 
+  List<Widget> _actionButtons() {
+    final hasHostedDemo = project.liveUrl != null || project.demoVideoUrl != null;
+    return [
+      if (project.githubUrl != null)
+        _buildActionButton(
+          icon: FontAwesomeIcons.github,
+          label: 'Code',
+          onTap: () => _launchUrl(project.githubUrl!),
+        ),
+      if (project.demoVideoUrl != null)
+        _buildActionButton(
+          icon: FontAwesomeIcons.circlePlay,
+          label: 'Watch Demo',
+          onTap: () => _launchUrl(project.demoVideoUrl!),
+          isPrimary: project.liveUrl == null,
+        ),
+      if (project.liveUrl != null)
+        _buildActionButton(
+          icon: FontAwesomeIcons.arrowUpRightFromSquare,
+          label: 'Live Demo',
+          onTap: () => _launchUrl(project.liveUrl!),
+          isPrimary: true,
+        ),
+      if (project.fileUrl != null)
+        _buildActionButton(
+          icon: FontAwesomeIcons.download,
+          label: 'Download',
+          onTap: () => _launchUrl(project.fileUrl!),
+          isPrimary: !hasHostedDemo,
+        ),
+    ];
+  }
+
   Widget _buildActionButton({
-    required IconData icon,
+    required FaIconData icon,
     required String label,
     required VoidCallback onTap,
     bool isPrimary = false,
@@ -207,7 +218,7 @@ class ProjectCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              FaIcon(
                 icon,
                 color: isPrimary ? Colors.white : AppColors.textSecondary,
                 size: 13,

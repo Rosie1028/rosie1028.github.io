@@ -247,7 +247,7 @@ class PersonalInfoCard extends StatelessWidget {
   }
 
   Widget _buildSocialButton({
-    required IconData icon,
+    required FaIconData icon,
     required VoidCallback onTap,
   }) {
     return InkWell(
@@ -261,7 +261,9 @@ class PersonalInfoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.grey.shade300, width: 1),
         ),
-        child: Icon(icon, color: Colors.black87, size: 20),
+        child: Center(
+          child: FaIcon(icon, color: Colors.black87, size: 20),
+        ),
       ),
     );
   }

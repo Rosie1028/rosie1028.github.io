@@ -5,6 +5,7 @@ class Project {
   final String technologies;
   final String? githubUrl;
   final String? liveUrl;
+  final String? demoVideoUrl; // Walkthrough video when a live demo is not available
   final String? fileUrl; // For Excel files or other downloadable files
   final String? imageUrl;
   final List<String>? imageUrls;
@@ -19,6 +20,7 @@ class Project {
     required this.technologies,
     this.githubUrl,
     this.liveUrl,
+    this.demoVideoUrl,
     this.fileUrl,
     this.imageUrl,
     this.imageUrls,
@@ -35,6 +37,7 @@ class Project {
       technologies: json['technologies'],
       githubUrl: json['github_url'],
       liveUrl: json['live_url'],
+      demoVideoUrl: json['demo_video_url'],
       fileUrl: json['file_url'],
       imageUrl: json['image_url'],
       imageUrls: json['image_urls'] != null 
@@ -54,6 +57,7 @@ class Project {
       'technologies': technologies,
       'github_url': githubUrl,
       'live_url': liveUrl,
+      'demo_video_url': demoVideoUrl,
       'file_url': fileUrl,
       'image_url': imageUrl,
       'image_urls': imageUrls,
