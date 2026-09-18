@@ -183,6 +183,25 @@ A simple intervention: visual schedule + reinforcement""",
     ];
   }
 
+  static List<Project> getPowerBIProjects() {
+    return [
+      Project(
+        id: 301,
+        title: "HR Dashboard",
+        description:
+            "An HR analytics report that summarizes headcount, retention, and turnover "
+            "through interactive charts, filters, and bookmarks. The dashboard gives HR "
+            "teams a clear view of workforce trends so they can explore the data and make "
+            "informed decisions.",
+        technologies: "Power BI, DAX, Power Query, Bookmarks",
+        demoVideoUrl:
+            "https://drive.google.com/file/d/1Qirn2K8V7nA7xKmytuLX1xAhXJT461t_/view?usp=drive_link",
+        featured: false,
+        createdAt: "2026-09-18T00:00:00Z",
+      ),
+    ];
+  }
+
   static List<Project> getAIMLNotebooks() {
     return [
       Project(

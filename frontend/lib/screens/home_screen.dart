@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../services/static_data_service.dart';
 import '../widgets/projects_section.dart';
+import '../widgets/power_bi_projects_section.dart';
 import '../widgets/ai_ml_notebooks_section.dart';
 import '../widgets/loading_widget.dart';
 import '../widgets/footer_section.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
   PersonalInfo get personalInfo => StaticDataService.getPersonalInfo();
   List<Project> get projects => StaticDataService.getProjects();
+  List<Project> get powerBiProjects => StaticDataService.getPowerBIProjects();
   List<Project> get aiMlNotebooks => StaticDataService.getAIMLNotebooks();
 
   @override
@@ -62,6 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ProjectsSection(projects: projects),
                         const SizedBox(height: 56),
                         const DecorativeDivider(),
+                        PowerBIProjectsSection(reports: powerBiProjects),
+                        if (powerBiProjects.isNotEmpty) ...[
+                          const SizedBox(height: 56),
+                          const DecorativeDivider(),
+                        ],
                         AIMLNotebooksSection(notebooks: aiMlNotebooks),
                         if (aiMlNotebooks.isNotEmpty) ...[
                           const SizedBox(height: 56),

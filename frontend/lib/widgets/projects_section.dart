@@ -58,8 +58,15 @@ class ProjectsSection extends StatelessWidget {
 
 class ProjectCard extends StatelessWidget {
   final Project project;
+  final String liveUrlLabel;
+  final String fileUrlLabel;
 
-  const ProjectCard({super.key, required this.project});
+  const ProjectCard({
+    super.key,
+    required this.project,
+    this.liveUrlLabel = 'Live Demo',
+    this.fileUrlLabel = 'Download',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -183,14 +190,14 @@ class ProjectCard extends StatelessWidget {
       if (project.liveUrl != null)
         _buildActionButton(
           icon: FontAwesomeIcons.arrowUpRightFromSquare,
-          label: 'Live Demo',
+          label: liveUrlLabel,
           onTap: () => _launchUrl(project.liveUrl!),
           isPrimary: true,
         ),
       if (project.fileUrl != null)
         _buildActionButton(
           icon: FontAwesomeIcons.download,
-          label: 'Download',
+          label: fileUrlLabel,
           onTap: () => _launchUrl(project.fileUrl!),
           isPrimary: !hasHostedDemo,
         ),
